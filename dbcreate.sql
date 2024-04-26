@@ -46,7 +46,7 @@ CREATE TYPE ORDER_STATUS AS ENUM (
 -- Table for storing orders placed by customers
 CREATE TABLE CUSTOMER_ORDER
 {
-    order_ID        int,                     -- Unique identifier for each order
+    order_ID        int PRIMARY KEY,                     -- Unique identifier for each order
     customer_ID     REFERENCES CUSTOMER(customer_ID), -- Link to customer who placed the order
     order_date      date,                    -- Date when the order was placed
     status          ORDER_STATUS,            -- Current status of the order
@@ -56,7 +56,7 @@ CREATE TABLE CUSTOMER_ORDER
 -- Table for storing individual purchase details within an order
 CREATE TABLE PURCHASE
 {
-    purchase_ID     int,                     -- Unique identifier for each purchase within an order
+    purchase_ID     int PRIMARY KEY,                     -- Unique identifier for each purchase within an order
     order_ID        REFERENCES CUSTOMER_ORDER(order_ID), -- Link to the associated order
     product_ID      REFERENCES PRODUCT(product_ID),      -- Link to the purchased product
     quantity        int,                     -- Quantity of the product purchased
