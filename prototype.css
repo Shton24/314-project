@@ -1,105 +1,134 @@
+/* Basic body styling */
 body 
 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f8f8;
+    background-color: #f8f8f8; /* Light grey background for easy on the eye reading */
 }
+
+/* Styling for the navigation bar at the top */
 .navbar 
 {
     display: flex;
-    justify-content: space-between;
-    background-color: #fff;
+    justify-content: space-between; /* Spreads navbar items across the full width */
+    background-color: #fff; /* White background for the navbar */
     padding: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
 }
+
+/* Logo styling */
 .logo 
 {
     font-weight: bold;
-    font-size: 24px;
+    font-size: 24px; /* Large, bold font for the logo */
 }
+
+/* Search bar styling */
 .search-bar 
 {
-    flex-grow: 1;
+    flex-grow: 1; /* Allows the search bar to fill available space */
     margin: 0 15px;
     position: relative;
 }
+
+/* Input field within the search bar */
 .search-bar input 
 {
-    width: 100%;
+    width: 100%; /* Full width to fill parent container */
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 20px;
+    border: 1px solid #ddd; /* Subtle border styling */
+    border-radius: 20px; /* Rounded corners for the input field */
 }
+
+/* Sidebar container styling */
 .sidebar 
 {
     background-color: #fff;
     padding: 20px;
-    width: 220px;
-    float: left;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    height: 100vh;
+    width: 220px; /* Fixed width for the sidebar */
+    float: left; /* Positions the sidebar on the left */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Adds shadow for depth */
+    height: 100vh; /* Full viewport height */
 }
+
+/* Main content styling */
 .content 
 {
-    margin-left: 220px;
-    padding: 20px;
+    margin-left: 220px; /* Adds margin to avoid overlap with the sidebar */
+    padding: 20px; /* Padding for spacing around the content */
 }
+
+/* Quick sort button container */
 .quick-sorts 
 {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-around; /* Evenly spaces buttons in the container */
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Adds a margin below the container */
 }
+
+/* Quick sort button styling */
 .quick-sort-button 
 {
     padding: 10px 20px;
-    border: none;
-    background-color: #007bff;
-    color: white;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    border: none; /* No border for a modern look */
+    background-color: #007bff; /* Blue background for visibility */
+    color: white; /* White text for contrast */
+    border-radius: 20px; /* Rounded corners for buttons */
+    cursor: pointer; /* Changes cursor to indicate button is clickable */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
 }
+
+/* Hover effect for quick sort buttons */
 .quick-sort-button:hover 
 {
-    background-color: #0056b3;
+    background-color: #0056b3; /* Darkens the button on hover */
 }
+
+/* Restaurant information card container */
 .restaurant-info 
 {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    flex-wrap: wrap; /* Allows cards to wrap to the next line */
+    justify-content: space-around; /* Spaces out cards evenly */
 }
+
+/* Individual restaurant card styling */
 .restaurant 
 {
     background-color: #fff;
-    margin: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    border-radius: 10px;
-    transition: all 0.3s ease;
-    width: calc(33.333% - 20px);
+    margin: 10px; /* Margin around cards for spacing */
+    padding: 20px; /* Padding inside cards */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Shadow for depth */
+    border-radius: 10px; /* Rounded corners for cards */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+    width: calc(33.333% - 20px); /* Three cards per row with proper spacing */
 }
+
+/* Hover effect for restaurant cards */
 .restaurant:hover 
 {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    transform: translateY(-5px); /* Moves card up slightly on hover */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2); /* Increases shadow on hover */
 }
+
+/* Image styling within restaurant cards */
 .restaurant img 
 {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
+    width: 100%; /* Full width of the card */
+    height: auto; /* Keeps the image aspect ratio */
+    border-radius: 10px; /* Rounded corners for the image */
 }
+
+/* Footer styling */
 .footer 
 {
     background-color: #fff;
     padding: 20px;
-    text-align: center;
-    box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
-    position: fixed;
+    text-align: center; /* Centers the text inside the footer */
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.1); /* Shadow for depth */
+    position: fixed; /* Fixes the footer to the bottom */
     bottom: 0;
-    width: 100%;
+    width: 100%; /* Full width of the viewport */
 }
