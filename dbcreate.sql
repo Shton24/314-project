@@ -21,4 +21,37 @@ CREATE TABLE RESTAURANT
     CONSTRAINT rating_constraint CHECK(rating > 0 AND rating <= 5)
 };
 
-CREATE TABLE 
+CREATE TABLE PRODUCT
+{
+    product_ID      int,
+    restaurant_ID   int REFERENCES RESTAURANT(restaurant_ID),
+    name            varchar(30),
+    cost            float(10),
+    discount        float(10),
+    discount_date   date,
+
+    PRIMARY KEY(product_ID)
+};
+
+CREATE TYPE ORDER_STATUS AS ENUM ('IN_CART', 'FINALISATION', 'AWAITING_PAYMENT', 'PAID','PENDING','REJECTED','
+                            AWAITING_REFUND','REFUNDED','ACCEPTED','PROCESSING','AWAITING_DELIVERY',
+                            'DELIVERY_IN_PROGRESS','DELIVERED','NO_FEEDBACK','FEEDBACK','END','ERROR');
+
+CREATE TABLE CUSTOMER_ORDER
+{
+    order_ID        int,
+    customer_ID     REFERENCES CUSTOMER(customer_ID),
+    order_date      date,
+    status          ORDER_STATUS,
+    customer_review float(10)
+};
+
+CREATE TABLE PURCHASE
+{
+    purchase_ID     int,
+    order_ID        REFERENCES CUSTOMER_ORDER(order_ID),
+    product_ID      REFERENCES PRODUCT(product_ID),
+    quantity        int,
+
+    PRIMARY KEY(purchase_ID)
+};
