@@ -1,0 +1,105 @@
+body 
+{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+}
+.navbar 
+{
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.logo 
+{
+    font-weight: bold;
+    font-size: 24px;
+}
+.search-bar 
+{
+    flex-grow: 1;
+    margin: 0 15px;
+    position: relative;
+}
+.search-bar input 
+{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+}
+.sidebar 
+{
+    background-color: #fff;
+    padding: 20px;
+    width: 220px;
+    float: left;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    height: 100vh;
+}
+.content 
+{
+    margin-left: 220px;
+    padding: 20px;
+}
+.quick-sorts 
+{
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.quick-sort-button 
+{
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.quick-sort-button:hover 
+{
+    background-color: #0056b3;
+}
+.restaurant-info 
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.restaurant 
+{
+    background-color: #fff;
+    margin: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    width: calc(33.333% - 20px);
+}
+.restaurant:hover 
+{
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+.restaurant img 
+{
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+.footer 
+{
+    background-color: #fff;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
