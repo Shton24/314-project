@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Delivery Service</title>
+    <style>
+        body 
+        {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar 
+        {
+            display: flex;
+            justify-content: space-between;
+            background-color: #eeeeee;
+            padding: 10px;
+        }
+        .logo 
+        {
+            font-weight: bold;
+        }
+        .search-bar 
+        {
+            flex-grow: 1;
+            margin: 0 15px;
+        }
+        .search-bar input 
+        {
+            width: 100%;
+            padding: 5px;
+        }
+        .sidebar 
+        {
+            background-color: #f3f3f3;
+            padding: 10px;
+            width: 200px;
+            float: left;
+        }
+        .content 
+        {
+            margin-left: 200px;
+        }
+        .quick-sorts 
+        {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+        .restaurant-info 
+        {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 10px;
+        }
+        .restaurant 
+        {
+            width: 30%;
+            background-color: white;
+            margin: 10px;
+            padding: 10px;
+            box-shadow: 0 0 5px #ccc;
+        }
+        .restaurant img 
+        {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">LOGO</div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+            </div>
+        <div>ACCOUNT LOGIN</div>
+    </div>
+    <div class="sidebar">
+        SORT OPTIONS
+        <!-- Add sort options here -->
+    </div>
+    <div class="content">
+        <div class="quick-sorts">
+            <!-- Add quick sort buttons here -->
+            QUICK SORTS
+        </div>
+        <div class="restaurant-info">
+            <!-- Repeat this block for each restaurant -->
+            <div class="restaurant">
+                <img src="path_to_restaurant_image.jpg" alt="Restaurant Image">
+                RESTAURANT INFO AND IMAGES
+            </div>
+        <!-- ... -->
+        </div>
+    </div>
+</body>
+</html>
