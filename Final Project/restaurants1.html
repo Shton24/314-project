@@ -85,55 +85,5 @@
         });
     });
 </script>
-
-<!--
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const currentOwner = JSON.parse(localStorage.getItem('currentOwner'));
-
-        if (currentOwner) {
-            const menuItems = JSON.parse(localStorage.getItem('menuItems')) || {};
-            const restaurantMenus = menuItems[currentOwner.restaurantId] || [];
-
-            const menuList = document.getElementById('menu-list');
-            menuList.innerHTML = '';
-
-            restaurantMenus.forEach(menuItem => {
-                const menuItemCard = `
-                    <div class="col-md-6">
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <h5 class="card-title">${menuItem.name}</h5>
-                                <p class="card-text">${menuItem.description}</p>
-                                <p class="card-text">${menuItem.price}</p>
-                                <button class="btn btn-primary" onclick="addToOrder(${menuItem.id}, '${menuItem.name}', '${menuItem.price}')">Add to Order</button>
-                            </div>
-                        </div>
-                    </div>`;
-                menuList.innerHTML += menuItemCard;
-            });
-        } else {
-            // Existing code to render the restaurants
-        }
-    });
-
-    function addToOrder(itemId, itemName, itemPrice) {
-        const orders = JSON.parse(localStorage.getItem('orders')) || [];
-        const orderDetails = `${itemName} (${itemPrice})`;
-        orders.push({
-            id: orders.length + 1,
-            date: new Date().toLocaleDateString(),
-            details: orderDetails,
-            address: '123 Main St'
-        });
-        localStorage.setItem('orders', JSON.stringify(orders));
-        alert(`Item ${itemName} added to order!`);
-    }
-
-    function goToOrderPage() {
-        window.location.href = 'orders1.html';
-    }
-</script>
--->
 </body>
 </html>
