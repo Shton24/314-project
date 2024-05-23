@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "name": "Pizza Palace",
+        "description": "Best pizza in town",
+        "image": "https://source.unsplash.com/1600x900/?pizza"
+    },
+    {
+        "id": 2,
+        "name": "Sushi World",
+        "description": "Fresh and delicious sushi",
+        "image": "https://source.unsplash.com/1600x900/?sushi"
+    },
+    {
+        "id": 3,
+        "name": "Burger Haven",
+        "description": "Juicy burgers and fries",
+        "image": "https://source.unsplash.com/1600x900/?burger"
+    }
+]

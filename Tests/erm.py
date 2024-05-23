@@ -1,39 +1,54 @@
+from flask import Flask, jsonify, send_from_directory
 import sqlite3
 
-# Connect to the database
-conn = sqlite3.connect('test2.db')
+
+app = Flask(__name__)
+
+# Connect to the SQLite database
+database_path = 'test.db'
+conn = sqlite3.connect(database_path)
 cursor = conn.cursor()
 
-# Create a list of dummy data for restaurants
-restaurant = [
-    ('Restaurant 1', 'Best food in town', 'path_to_restaurant_image1.jpg'),
-    ('Restaurant 2', 'Delicious and affordable', 'path_to_restaurant_image2.jpg'),
-    ('Restaurant 3', 'Exquisite dining experience', 'path_to_restaurant_image3.jpg'),
-    ('Restaurant 4', 'Fast food at its finest', 'path_to_restaurant_image4.jpg'),
-    ('Restaurant 5', 'Authentic Asian cuisine', 'path_to_restaurant_image5.jpg'),
-    ('Restaurant 6', 'Healthy and fresh', 'path_to_restaurant_image6.jpg'),
-    ('Restaurant 7', 'Gourmet delights', 'path_to_restaurant_image7.jpg'),
-    ('Restaurant 8', 'Casual dining', 'path_to_restaurant_image8.jpg'),
-    ('Restaurant 9', 'Family-friendly', 'path_to_restaurant_image9.jpg'),
-    ('Restaurant 10', 'Traditional recipes', 'path_to_restaurant_image10.jpg')
+# Check existing data in the CUSTOMER table
+cursor.execute("SELECT customer_ID FROM CUSTOMER")
+existing_ids = cursor.fetchall()
+existing_ids = {id[0] for id in existing_ids}
+
+# Generate unique IDs for the new data
+start_id = max(existing_ids) + 1 if existing_ids else 1
+
+users_data = [
+    (start_id, 'Alice', 'Jones', '11110000', 'Building 3 UOW', '12345678910', '1', '1'),
+    (start_id + 1, 'Bob', 'Dylan', '00001111', 'Building 19 UOW', '10987654321', '0', '2'),
+    (start_id + 2, 'Charlie', 'Dean', '01010101', 'Building 24 UOW', '111213141516', '0', '3'),
 ]
 
-# Insert the dummy data into the restaurants table
-cursor.executemany("INSERT INTO RESTAURANT (name, description, image) VALUES (?, ?, ?)", restaurant)
+# Insert the data into the CUSTOMER table
+cursor.executemany("""
+    INSERT INTO CUSTOMER (customer_ID, first_name, last_name, phone, address, pay_info, member, password) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+""", users_data)
 
-# Commit the changes and close the connection
+# Commit changes and close the connection
 conn.commit()
 conn.close()
 
-# Verify the data has been inserted correctly
-conn = sqlite3.connect('test2.db')
-cursor = conn.cursor()
-cursor.execute("SELECT * FROM RESTAURANT")
-rows = cursor.fetchall()
-conn.close()
+@app.route('/api/restaurants', methods=['GET'])
+def get_restaurants():
+    cursor.execute("SELECT name, description, image FROM restaurants")
+    rows = cursor.fetchall()
+    conn.close()
+    
+    restaurants = [{'name': row[0], 'description': row[1], 'image': row[2]} for row in rows]
+    return jsonify(restaurants)
 
-import pandas as pd
+@app.route('/')
+def serve_index():
+    return send_from_directory('.', 'test.html')
 
-# Display the inserted data
-df = pd.DataFrame(rows, columns=['id', 'name', 'description', 'image'])
-print(df)
+@app.route('/<path:path>')
+def serve_static(path):
+    return send_from_directory('.', path)
+
+if __name__ == '__main__':
+    app.run(debug=True)

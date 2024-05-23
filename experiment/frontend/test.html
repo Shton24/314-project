@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Order and Delivery Service</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Our Service</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="restaurants.html">Restaurants</a></li>
+                <li><a href="orders.html">My Orders</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="search">
+            <input type="text" id="searchBox" placeholder="Search for restaurants...">
+            <button onclick="searchRestaurants()">Search</button>
+        </section>
+        <section id="results">
+            <!-- Search results will be displayed here -->
+        </section>
+        <!-- HTML Form -->
+        <form id="orderForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <span id="nameError" class="error"></span>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <span id="emailError" class="error"></span>
+            
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
+            <span id="addressError" class="error"></span>
+            
+            <button type="submit">Submit Order</button>
+        </form>
+        <!-- HTML for search and filter -->
+        <input type="text" id="searchBox" placeholder="Search for restaurants...">
+        <select id="categoryFilter">
+            <option value="">All Categories</option>
+            <option value="cafe">Cafe</option>
+            <option value="club">Club</option>
+            <option value="asian">Asian</option>
+        </select>
+        <ul id="restaurantList">
+            <li data-category="cafe">Cafe 1</li>
+            <li data-category="club">Club 1</li>
+            <li data-category="asian">Asian Restaurant 1</li>
+            <li data-category="cafe">Cafe 2</li>
+            <!-- More restaurants -->
+        </ul>
+        <!-- HTML for interactive elements -->
+        <button id="toggleMenu">Toggle Menu</button>
+        <div id="menu" style="display: none;">
+            <p>Menu Item 1</p>
+            <p>Menu Item 2</p>
+            <p>Menu Item 3</p>
+        </div>
+    </main>
+    <script src="script.js"></script>
+
+</body>
+</html>

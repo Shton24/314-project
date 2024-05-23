@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - FoodDelivery</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+   <!-- Navigation Bar -->
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">FoodDelivery</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="index1.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="restaurants1.html">Restaurants</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="orders1.html">My Orders</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="profile1.html">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" id="logout">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Profile Section -->
+<section class="container my-5">
+    <h2 class="text-center">My Profile</h2>
+    <form id="profile-form">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter your name">
+        </div>
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter your email" disabled>
+        </div>
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" class="form-control" id="address" placeholder="Enter your address">
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="text" class="form-control" id="phone" placeholder="Enter your phone number">
+        </div>
+        <button type="submit" class="btn btn-primary">Update Profile</button>
+    </form>
+    <button class="btn btn-danger mt-3" id="logout-btn">Logout</button>
+</section>
+
+<!-- Footer -->
+<footer class="bg-light text-center py-4">
+    <p>&copy; 2024 FoodDelivery. All rights reserved.</p>
+</footer>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            
+        if (!currentUser) {
+            window.location.href = 'login.html';
+        }
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        
+        if (currentUser) {
+            document.getElementById('name').value = currentUser.name;
+            document.getElementById('email').value = currentUser.email;
+            document.getElementById('address').value = currentUser.address;
+            document.getElementById('phone').value = currentUser.phone;
+        } else {
+            alert('Please log in first.');
+            window.location.href = 'login.html';
+        }
+
+        document.getElementById('logout-btn').addEventListener('click', function() {
+            localStorage.removeItem('currentUser');
+            alert('Logged out successfully!');
+            window.location.href = 'login.html';
+        });
+    });
+
+    document.getElementById('profile-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        
+        if (currentUser) {
+            currentUser.name = document.getElementById('name').value;
+            currentUser.address = document.getElementById('address').value;
+            currentUser.phone = document.getElementById('phone').value;
+
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            alert('Profile updated successfully!');
+        } else {
+            alert('Error updating profile. Please log in again.');
+            window.location.href = 'login.html';
+        }
+    });
+</script>
+</body>
+</html>

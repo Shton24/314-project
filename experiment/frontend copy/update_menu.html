@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Menu - FoodDelivery</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+   <!-- Navigation Bar -->
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">FoodDelivery</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="index1.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="restaurants1.html">Restaurants</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="orders1.html">My Orders</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="profile1.html">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="owner_login.html" id="logout">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Update Menu Section -->
+<section class="container my-5">
+    <h2 class="text-center">Update Menu</h2>
+    <form id="menu-form">
+        <div class="form-group">
+            <label for="menu-item-name">Menu Item Name</label>
+            <input type="text" class="form-control" id="menu-item-name" placeholder="Enter menu item name" required>
+        </div>
+        <div class="form-group">
+            <label for="menu-item-description">Menu Item Description</label>
+            <input type="text" class="form-control" id="menu-item-description" placeholder="Enter menu item description" required>
+        </div>
+        <div class="form-group">
+            <label for="menu-item-price">Menu Item Price</label>
+            <input type="text" class="form-control" id="menu-item-price" placeholder="Enter menu item price" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Menu Item</button>
+    </form>
+    <h3 class="text-center mt-5">Current Menu</h3>
+    <div class="list-group" id="menu-list">
+        <!-- Menu items will be dynamically inserted here -->
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-light text-center py-4">
+    <p>&copy; 2024 FoodDelivery. All rights reserved.</p>
+</footer>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const currentOwner = JSON.parse(localStorage.getItem('currentOwner'));
+        
+        if (!currentOwner) {
+            alert('Please log in first.');
+            window.location.href = 'owner_login.html';
+        }
+
+        const menuList = document.getElementById('menu-list');
+        const menus = JSON.parse(localStorage.getItem('menus')) || {};
+
+        function renderMenu() {
+            const restaurantMenus = menus[currentOwner.restaurantId] || [];
+            menuList.innerHTML = '';
+            restaurantMenus.forEach((menuItem, index) => {
+                const menuItemElement = `
+                    <div class="list-group-item">
+                        <h5>${menuItem.name}</h5>
+                        <p>${menuItem.description}</p>
+                        <p>${menuItem.price}</p>
+                        <button class="btn btn-danger btn-sm" onclick="removeMenuItem(${index})">Remove</button>
+                    </div>`;
+                menuList.innerHTML += menuItemElement;
+            });
+        }
+
+        document.getElementById('menu-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('menu-item-name').value;
+            const description = document.getElementById('menu-item-description').value;
+            const price = document.getElementById('menu-item-price').value;
+
+            if (!menus[currentOwner.restaurantId]) {
+                menus[currentOwner.restaurantId] = [];
+            }
+
+            menus[currentOwner.restaurantId].push({ name, description, price });
+            localStorage.setItem('menus', JSON.stringify(menus));
+            renderMenu();
+
+            document.getElementById('menu-form').reset();
+        });
+
+        window.removeMenuItem = function(index) {
+            menus[currentOwner.restaurantId].splice(index, 1);
+            localStorage.setItem('menus', JSON.stringify(menus));
+            renderMenu();
+        };
+
+        document.getElementById('logout').addEventListener('click', function() {
+            localStorage.removeItem('currentOwner');
+            alert('Logged out successfully!');
+            window.location.href = 'owner_login.html';
+        });
+
+        renderMenu();
+    });
+</script>
+</body>
+</html>

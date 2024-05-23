@@ -1,0 +1,25 @@
+/* CSS for error messages */
+.error {
+    color: red;
+    font-size: 12px;
+}
+/* styles.css */
+.jumbotron {
+    background: url('https://source.unsplash.com/1600x900/?food,restaurant') no-repeat center center;
+    background-size: cover;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.jumbotron .btn-primary {
+    background-color: #ff5733;
+    border-color: #ff5733;
+}
+
+.features i {
+    color: #ff5733;
+}
+
+footer {
+    background-color: #f8f9fa;
+}

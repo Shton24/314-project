@@ -16,7 +16,8 @@ CREATE TABLE RESTAURANT (
     name             varchar(50),            -- Name of the restaurant
     address          varchar(50),            -- Physical address of the restaurant
     description      varchar(200),           -- Description of the restaurant's theme, cuisine, etc.
-    rating           float,                  -- Average customer rating, from 1.0 to 5.0
+    rating           float(10),     
+    image_path       varchar(255),             -- Average customer rating, from 1.0 to 5.0
     CONSTRAINT rating_constraint CHECK(rating > 0 AND rating <= 5)  -- Ensure ratings are within valid range
 );
 

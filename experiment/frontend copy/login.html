@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - FoodDelivery</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+   <!-- Navigation Bar -->
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">FoodDelivery</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="index1.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="restaurants1.html">Restaurants</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="orders1.html">My Orders</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="profile1.html">Profile</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Login Section -->
+<section class="container my-5">
+    <h2 class="text-center">Login</h2>
+    <form id="login-form">
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</section>
+
+<!-- Footer -->
+<footer class="bg-light text-center py-4">
+    <p>&copy; 2024 FoodDelivery. All rights reserved.</p>
+</footer>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script>
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        
+        // Mock user data (for demonstration purposes)
+        const users = [
+            { email: 'user1@example.com', password: 'password1', name: 'User One', address: '123 Main St', phone: '123-456-7890' },
+            { email: 'user2@example.com', password: 'password2', name: 'User Two', address: '456 Elm St', phone: '987-654-3210' }
+        ];
+
+        const owners = [
+            { email: 'owner1@example.com', password: 'password1', restaurantId: 1, name: 'Pizza Palace' },
+            { email: 'owner2@example.com', password: 'password2', restaurantId: 2, name: 'Sushi World' }
+        ];
+
+        const user = users.find(user => user.email === email && user.password === password);
+        const owner = owners.find(owner => owner.email === email && owner.password === password);
+
+        if (user) {
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            alert('Login successful!');
+            window.location.href = 'profile1.html';
+        } 
+        else if(owner) {
+            localStorage.setItem('currentOwner', JSON.stringify(owner));
+            alert('Login successful!');
+            window.location.href = 'update_menu.html';
+        } 
+        else {
+            alert('Invalid email or password!');
+        }
+    });
+</script>
+</body>
+</html>

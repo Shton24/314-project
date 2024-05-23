@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - FoodDelivery</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Add this script tag before the closing </body> tag in profile.html -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const profileForm = document.querySelector('form');
+        
+            profileForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const address = document.getElementById('address').value;
+                const phone = document.getElementById('phone').value;
+                
+                const profileData = {
+                    name,
+                    email,
+                    address,
+                    phone
+                };
+                
+                fetch('/update-profile', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(profileData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Profile updated successfully!');
+                    } else {
+                        alert('Error updating profile!');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error updating profile!');
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+   <!-- Navigation Bar -->
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">FoodDelivery</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="index1.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="restaurants1.html">Restaurants</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="orders1.html">My Orders</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="profile1.html">Profile</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Profile Section -->
+<section class="container my-5">
+    <h2 class="text-center">My Profile</h2>
+    <form>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter your name">
+        </div>
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter your email">
+        </div>
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" class="form-control" id="address" placeholder="Enter your address">
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="text" class="form-control" id="phone" placeholder="Enter your phone number">
+        </div>
+        <button type="submit" class="btn btn-primary">Update Profile</button>
+    </form>
+</section>
+
+<!-- Footer -->
+<footer class="bg-light text-center py-4">
+    <p>&copy; 2024 FoodDelivery. All rights reserved.</p>
+</footer>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+</html>
